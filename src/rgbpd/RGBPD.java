@@ -7,17 +7,14 @@ import java.awt.*;
  */
 public class RGBPD {
     public static void main(String ... args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Frame frame;
-                try {
-                    frame = new Frame();
-                    frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
-                    frame.setVisible(true);
-                } catch(AWTException e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            Frame frame;
+            try {
+                frame = new Frame();
+                frame.setDefaultCloseOperation(Frame.EXIT_ON_CLOSE);
+                frame.setVisible(true);
+            } catch(AWTException e) {
+                e.printStackTrace();
             }
         });
     }
