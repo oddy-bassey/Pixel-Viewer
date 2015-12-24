@@ -12,8 +12,7 @@ public class Frame extends JFrame {
     public Frame() throws AWTException {
         setTitle("Get RGB Pixel by me0x847206");
 
-        screen = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        robot = new Robot(screen);
+        robot = new Robot(GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice());
 
         JPanel southPanel = new JPanel();
         JPanel southPanelCenter = new JPanel();
@@ -26,12 +25,12 @@ public class Frame extends JFrame {
         southPanelCenter.add(red = new LabelTextFieldPanel("R", "", Color.RED));
         southPanelCenter.add(html = new LabelTextFieldPanel("H", "", Color.BLACK, "HTML Style"));
         southPanelCenter.add(green = new LabelTextFieldPanel("G", "", Color.GREEN));
-        southPanelCenter.add(xCursor = new LabelTextFieldPanel("X", "", Color.BLACK, "Y value for Cursor position"));
+        southPanelCenter.add(xCursor = new LabelTextFieldPanel("X", "", Color.BLACK, "X value for Cursor position"));
         southPanelCenter.add(blue = new LabelTextFieldPanel("B", "", Color.BLUE));
         southPanelCenter.add(yCursor = new LabelTextFieldPanel("Y", "", Color.BLACK, "Y value for Cursor position"));
         southPanelSouth.add(button1 = new JButton("Select Pixel"));
         southPanelSouth.add(button2 = new JButton("Top " + (windowOnTop ? "(on)" : "(off)" )));
-        //southPanelSouth.add( button3 = new JButton("B3") );
+        //southPanelSouth.add(button3 = new JButton("B3"));
 
         southPanel.add(southPanelCenter);
         southPanel.add(southPanelSouth, BorderLayout.SOUTH);
@@ -46,7 +45,7 @@ public class Frame extends JFrame {
         button1.addMouseMotionListener(listener);
         button2.addActionListener(e -> {
             windowOnTop = !windowOnTop;
-            Frame.this.setAlwaysOnTop( windowOnTop );
+            Frame.this.setAlwaysOnTop(windowOnTop);
             button2.setText("Top " + (windowOnTop ? "(on)" : "(off)" ));
         });
 
@@ -58,7 +57,7 @@ public class Frame extends JFrame {
         pack();
 
         Point p = GraphicsEnvironment.getLocalGraphicsEnvironment().getCenterPoint();
-        setLocation(p.x - getWidth() / 2, p.y - getHeight() / 2);
+        setLocation(p.x - (getWidth() >> 1), p.y - (getHeight() >> 1));
     }
 
     private class KeyboardAndMouseListener extends MouseMotionAdapter implements KeyEventDispatcher {
@@ -80,20 +79,17 @@ public class Frame extends JFrame {
 
             Color c = robot.getPixelColor((int) centralPoint.getX(), (int) centralPoint.getY());
 
-            xCursor.setText("" + (int) centralPoint.getX());
-            yCursor.setText("" + (int) centralPoint.getY());
+            xCursor.setText("" + centralX);
+            yCursor.setText("" + centralY);
 
             blue.setText("" + c.getBlue());
             red.setText("" + c.getRed());
             green.setText("" + c.getGreen());
-            html.setText("#" + Integer.toHexString( c.getRGB() ).substring(2) );
-
-            int x = (int) centralPoint.getX() - 6;
-            int y = (int) centralPoint.getY() - 6;
+            html.setText("#" + Integer.toHexString(c.getRGB()).substring(2));
 
             imageLabel.setIcon(
                     new ImageIcon(robot
-                            .createScreenCapture(new Rectangle( x, y, 13, 13))
+                            .createScreenCapture(new Rectangle( centralX - 6, centralY - 6, 13, 13))
                             .getScaledInstance(260, 260, Image.SCALE_DEFAULT)
                     )
             );
@@ -134,9 +130,9 @@ public class Frame extends JFrame {
             label = new JLabel(labelText, SwingConstants.CENTER);
             field = new JTextField(fieldText, 7);
 
-            field.setComponentPopupMenu(new PopupMenu( field ));
+            field.setComponentPopupMenu(new PopupMenu(field));
             field.setEditable(false);
-            field.setHorizontalAlignment( SwingConstants.CENTER );
+            field.setHorizontalAlignment(SwingConstants.CENTER);
 
             label.setForeground(color);
             field.setForeground(color);
@@ -151,14 +147,14 @@ public class Frame extends JFrame {
 
             field.addMouseListener(new MouseAdapter() {
                 @Override
-                public void mousePressed(java.awt.event.MouseEvent e) {
-                    if(e.getButton() == java.awt.event.MouseEvent.BUTTON2_MASK) {
+                public void mousePressed(MouseEvent e) {
+                    if(e.getButton() == MouseEvent.BUTTON2_MASK) {
                         field.getComponentPopupMenu().show(null, e.getX(), e.getY());
                     } else
                         field.selectAll();
                 }
                 @Override
-                public void mouseExited(java.awt.event.MouseEvent e) {
+                public void mouseExited(MouseEvent e) {
                     field.select(0, 0);
                 }
             });
@@ -189,7 +185,6 @@ public class Frame extends JFrame {
 
     private final JButton button1, button2;//, button3;
 
-    private final GraphicsDevice screen;
     private final Robot robot;
 
     private boolean windowOnTop = false;

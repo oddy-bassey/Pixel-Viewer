@@ -1,0 +1,6 @@
+RGB Pixel from Display
+
+This application permit to read RGB codes for each pixel from display. Navigation
+is supported with mouse pointer and with arrow keys from keyboard. Application
+window has fixed size and it is not resizable. Also, application window can to be
+on top of all other windows.
