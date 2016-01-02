@@ -4,3 +4,5 @@ This application permit to read RGB codes for each pixel from display. Navigatio
 is supported with mouse pointer and with arrow keys from keyboard. Application
 window has fixed size and it is not resizable. Also, application window can to be
 on top of all other windows.
+
+Last compiled jar file can be downloaded from out/artifacts/RGBPD_jar/ directory.
