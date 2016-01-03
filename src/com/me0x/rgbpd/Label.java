@@ -1,4 +1,4 @@
-package rgbpd;
+package com.me0x.rgbpd;
 
 import javax.swing.*;
 import java.awt.*;
