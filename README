@@ -1,8 +1,7 @@
-RGB Pixel from Display
-
-This application permit to read RGB codes for each pixel from display. Navigation
-is supported with mouse pointer and with arrow keys from keyboard. Application
-window has fixed size and it is not resizable. Also, application window can to be
-on top of all other windows.
-
-Last compiled jar file can be downloaded from out/artifacts/RGBPD_jar/ directory.
+- Read licence in the 'LICENCE' file
+- Read copying in the 'LICENCE' file (yes, this is the same file as for licence)
+- Look at contributors list in the 'CONTRIBUTORS' file
+- Read documentation in the 'doc' directory
+- Samples are in the 'sample' directory
+- Source code is located in the 'src' directory
+- External libraries are located in the 'lib' directory
