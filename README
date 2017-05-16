@@ -3,5 +3,5 @@
 - Look at contributors list in the 'CONTRIBUTORS' file
 - Read documentation in the 'doc' directory
 - Samples are in the 'sample' directory
-- Source code is located in the 'src' directory
+- Source code is located in the 'source' directory
 - External libraries are located in the 'lib' directory
