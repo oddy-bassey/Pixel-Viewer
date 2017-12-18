@@ -5,3 +5,4 @@
 - Samples are in the 'sample' directory
 - Source code is located in the 'source' directory
 - External libraries are located in the 'lib' directory
+- Artifact (pixelis-<version>.jar file) is located in the 'source/target/' directory
